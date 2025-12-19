@@ -1,13 +1,29 @@
 package se.sprinto.hakan.chatapp.model;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
+
+    @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(unique = true, nullable = false)
     private String password;
-    private List<Message> messages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.LAZY)
+    private List<Message> messages;
 
     public User() {
     }

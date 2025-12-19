@@ -1,5 +1,6 @@
 package se.sprinto.hakan.chatapp.service;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import se.sprinto.hakan.chatapp.model.User;
 import se.sprinto.hakan.chatapp.repository.UserRepository;
@@ -20,6 +21,4 @@ public class UserService {
     public User register(User user) {
         return repo.save(user);
     }
-
-
 }

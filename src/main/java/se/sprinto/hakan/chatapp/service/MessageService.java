@@ -22,5 +22,5 @@ public class MessageService {
     public List<Message> getMessages(Long userId) {
         return repo.findByUserId(userId);
     }
-}
+} // Test this to
 

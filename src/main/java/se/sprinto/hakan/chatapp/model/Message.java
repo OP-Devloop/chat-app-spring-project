@@ -1,13 +1,28 @@
 package se.sprinto.hakan.chatapp.model;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "messages")
 public class Message {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private User user;
+
+    @Column(name = "message", nullable = false)
     private String text;
+
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime timestamp;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public Message(User user, String text, LocalDateTime timestamp) {
         this.user = user;
@@ -21,10 +36,6 @@ public class Message {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {
